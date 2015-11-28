@@ -1,0 +1,28 @@
+{
+  "name": "iterator-sequencer",
+  "description": "Iterator Sequencer",
+  "version": "0.0.0",
+  "author": "Nao Yonamine <mohayonao@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/mohayonao/iterator-sequencer/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "files": [
+    "package.json",
+    "README.md",
+    "index.js",
+    "lib"
+  ],
+  "homepage": "http://mohayonao.github.io/iterator-sequencer/",
+  "keywords": [
+    "iterator"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/mohayonao/iterator-sequencer.git"
+  },
+  "scripts": {}
+}

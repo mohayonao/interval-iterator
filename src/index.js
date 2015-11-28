@@ -1,1 +1,3 @@
-export default {};
+import IteratorSequencer from "./IteratorSequencer";
+
+export default IteratorSequencer;

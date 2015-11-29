@@ -1,3 +1,3 @@
-import IteratorSequencer from "./IteratorSequencer";
+import IntervalIterator from "./IntervalIterator";
 
-export default IteratorSequencer;
+export default IntervalIterator;

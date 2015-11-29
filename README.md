@@ -1,20 +1,20 @@
-# iterator-sequencer
-[![Build Status](http://img.shields.io/travis/mohayonao/iterator-sequencer.svg?style=flat-square)](https://travis-ci.org/mohayonao/iterator-sequencer)
-[![NPM Version](http://img.shields.io/npm/v/iterator-sequencer.svg?style=flat-square)](https://www.npmjs.org/package/iterator-sequencer)
+# interval-iterator
+[![Build Status](http://img.shields.io/travis/mohayonao/interval-iterator.svg?style=flat-square)](https://travis-ci.org/mohayonao/interval-iterator)
+[![NPM Version](http://img.shields.io/npm/v/interval-iterator.svg?style=flat-square)](https://www.npmjs.org/package/interval-iterator)
 [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](http://mohayonao.mit-license.org/)
 
-> Sequencer-like Iterator
+> An iterator for time-based sequence events
 
-convert to a sequencer-like iterator from an iterator that generates `{ time: number }`.
+Iterate composed aggregate items by interval from an iterator that generates `{ time: number }`.
 
 ## Installation
 
 ```
-$ npm install iterator-sequencer
+$ npm install interval-iterator
 ```
 
 ## API
-### IteratorSequencer
+### IntervalIterator
 - `constructor(iter: Iterator, interval: number)`
 
 ### Instance methods
@@ -24,7 +24,7 @@ $ npm install iterator-sequencer
 ## Examples
 
 ```js
-import IteratorSequencer from "iterator-sequencer";
+import IntervalIterator from "interval-iterator";
 
 let baseIterator = [
   { time: 0.0 },
@@ -35,7 +35,7 @@ let baseIterator = [
   { time: 8.0 },
 ][Symbol.iterator]();
 
-let iter = new IteratorSequencer(baseIterator, 1);
+let iter = new IntervalIterator(baseIterator, 1);
 
 // 0.000
 iter.next(); // { done: false, value: [ { time: 0.0 } ] }
@@ -59,10 +59,10 @@ iter.next(); // { done: false, value: [ { time: 8.0 } ] }
 iter.next(); // { done: true, value: [] }
 ```
 
-`{ done: true }` is adjusted by `duration` of the last item if exists.
+If the last item has `duration`, `{ done: true }` is emitted to be delayed.
 
 ```js
-import IteratorSequencer from "iterator-sequencer";
+import IntervalIterator from "interval-iterator";
 
 let baseIterator = [
   { time: 0.0, duration: 2 },
@@ -73,7 +73,7 @@ let baseIterator = [
   { time: 8.0, duration: 2 },
 ][Symbol.iterator]();
 
-let iter = new IteratorSequencer(baseIterator, 1);
+let iter = new IntervalIterator(baseIterator, 1);
 
 // 0.000
 iter.next(); // { done: false, value: [ { time: 0.0, duration: 2 } ] }

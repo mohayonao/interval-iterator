@@ -1,6 +1,6 @@
 {
   "name": "interval-iterator",
-  "description": "Iterator Sequencer",
+  "description": "An iterator for time-based sequence events",
   "version": "0.1.0",
   "author": "Nao Yonamine <mohayonao@gmail.com>",
   "bugs": {

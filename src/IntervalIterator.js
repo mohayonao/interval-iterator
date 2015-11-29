@@ -1,6 +1,6 @@
 const ITERATOR = typeof Symbol !== "undefined" ? Symbol.iterator : "Symbol(Symbol.iterator)";
 
-export default class IteratorSequencer {
+export default class IntervalIterator {
   constructor(iter, interval) {
     this.iter = iter;
     this.interval = +interval;

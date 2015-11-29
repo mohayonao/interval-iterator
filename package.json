@@ -1,10 +1,10 @@
 {
-  "name": "iterator-sequencer",
-  "description": "Iterator Sequencer",
+  "name": "interval-iterator",
+  "description": "An iterator for time-based sequence events",
   "version": "0.1.0",
   "author": "Nao Yonamine <mohayonao@gmail.com>",
   "bugs": {
-    "url": "https://github.com/mohayonao/iterator-sequencer/issues"
+    "url": "https://github.com/mohayonao/interval-iterator/issues"
   },
   "dependencies": {},
   "devDependencies": {
@@ -22,7 +22,7 @@
     "index.js",
     "lib"
   ],
-  "homepage": "http://mohayonao.github.io/iterator-sequencer/",
+  "homepage": "http://mohayonao.github.io/interval-iterator/",
   "keywords": [
     "iterator"
   ],
@@ -30,7 +30,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "http://github.com/mohayonao/iterator-sequencer.git"
+    "url": "http://github.com/mohayonao/interval-iterator.git"
   },
   "scripts": {
     "build": "npm run build:to5",

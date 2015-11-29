@@ -1,5 +1,5 @@
 import assert from "power-assert";
-import IteratorSequencer from "../src/IteratorSequencer";
+import IntervalIterator from "../src/IntervalIterator";
 
 function createIterator(times, duration = 0) {
   if (duration === 0) {
@@ -9,17 +9,17 @@ function createIterator(times, duration = 0) {
   }
 }
 
-describe("IteratorSequencer", () => {
+describe("IntervalIterator", () => {
   describe("constructor(iter: Iterator, interval: number)", () => {
     it("works", () => {
-      let iter = new IteratorSequencer(createIterator([ 0, 1, 1.5, 2, 4, 8 ]), 0.5);
+      let iter = new IntervalIterator(createIterator([ 0, 1, 1.5, 2, 4, 8 ]), 0.5);
 
-      assert(iter instanceof IteratorSequencer);
+      assert(iter instanceof IntervalIterator);
     });
   });
   describe("#next(): { done: boolean, value: object[] }", () => {
     it("works with interval: 4.0", () => {
-      let iter = new IteratorSequencer(createIterator([ 0, 1, 1.5, 2, 4, 8 ]), 4.0);
+      let iter = new IntervalIterator(createIterator([ 0, 1, 1.5, 2, 4, 8 ]), 4.0);
 
       assert.deepEqual(iter.next(), {
         done: false, value: [ { time: 0.0 }, { time: 1.0 }, { time: 1.5 }, { time: 2.0 } ]
@@ -35,7 +35,7 @@ describe("IteratorSequencer", () => {
       }, "12.00");
     });
     it("works with interval: 2.0", () => {
-      let iter = new IteratorSequencer(createIterator([ 0, 1, 1.5, 2, 4, 8 ]), 2.0);
+      let iter = new IntervalIterator(createIterator([ 0, 1, 1.5, 2, 4, 8 ]), 2.0);
 
       assert.deepEqual(iter.next(), {
         done: false, value: [ { time: 0.0 }, { time: 1.0 }, { time: 1.5 } ]
@@ -57,7 +57,7 @@ describe("IteratorSequencer", () => {
       }, "10.00");
     });
     it("works with interval: 1.0", () => {
-      let iter = new IteratorSequencer(createIterator([ 0, 1, 1.5, 2, 4, 8 ]), 1.0);
+      let iter = new IntervalIterator(createIterator([ 0, 1, 1.5, 2, 4, 8 ]), 1.0);
 
       assert.deepEqual(iter.next(), {
         done: false, value: [ { time: 0.0 } ]
@@ -91,7 +91,7 @@ describe("IteratorSequencer", () => {
       }, "9.00");
     });
     it("works with interval: 0.5", () => {
-      let iter = new IteratorSequencer(createIterator([ 0, 1, 1.5, 2, 4, 8 ]), 0.5);
+      let iter = new IntervalIterator(createIterator([ 0, 1, 1.5, 2, 4, 8 ]), 0.5);
 
       assert.deepEqual(iter.next(), {
         done: false, value: [ { time: 0.0 } ]
@@ -149,7 +149,7 @@ describe("IteratorSequencer", () => {
       }, "8.50");
     });
     it("works with interval: 0.25", () => {
-      let iter = new IteratorSequencer(createIterator([ 0, 1, 1.5, 2, 4, 8 ]), 0.25);
+      let iter = new IntervalIterator(createIterator([ 0, 1, 1.5, 2, 4, 8 ]), 0.25);
 
       assert.deepEqual(iter.next(), {
         done: false, value: [ { time: 0.0 } ]
@@ -255,7 +255,7 @@ describe("IteratorSequencer", () => {
       }, "8.25");
     });
     it("works with interval: 0.25, duration: 2", () => {
-      let iter = new IteratorSequencer(createIterator([ 0, 1, 1.5, 2, 4, 8 ], 2), 0.25);
+      let iter = new IntervalIterator(createIterator([ 0, 1, 1.5, 2, 4, 8 ], 2), 0.25);
 
       assert.deepEqual(iter.next(), {
         done: false, value: [ { time: 0.0, duration: 2 } ]
@@ -384,7 +384,7 @@ describe("IteratorSequencer", () => {
   });
   describe("#[Symbol.iterator]: Iterator", () => {
     it("works with interval: 0.5", () => {
-      let iter = new IteratorSequencer(createIterator([ 0, 1, 1.5, 2, 4, 8 ]), 0.5);
+      let iter = new IntervalIterator(createIterator([ 0, 1, 1.5, 2, 4, 8 ]), 0.5);
       let result = [];
 
       for (let iterItem of iter) {
@@ -411,7 +411,7 @@ describe("IteratorSequencer", () => {
         [ { time: 8.0 } ]
       ]);
       it("works with interval: 0.5, duration: 2", () => {
-        let iter = new IteratorSequencer(createIterator([ 0, 1, 1.5, 2, 4, 8 ], 2), 0.5);
+        let iter = new IntervalIterator(createIterator([ 0, 1, 1.5, 2, 4, 8 ], 2), 0.5);
         let result = [];
 
         for (let iterItem of iter) {

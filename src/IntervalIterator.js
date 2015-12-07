@@ -2,18 +2,17 @@ const ITERATOR = typeof Symbol !== "undefined" ? Symbol.iterator : "Symbol(Symbo
 
 export default class IntervalIterator {
   constructor(iter, interval) {
-    this.iter = iter;
-    this.interval = +interval;
+    this._iter = iter;
+    this._interval = +interval;
     this._currentTime = 0;
     this._iterItem = null;
-    this._doneTime = 0;
     this._done = false;
   }
 
   next() {
-    let t0 = this._currentTime + this.interval;
+    let t0 = this._currentTime + this._interval;
 
-    if (this._done && this._doneTime < t0) {
+    if (this._done) {
       return { done: true, value: [] };
     }
 
@@ -38,17 +37,17 @@ export default class IntervalIterator {
       return this._nextIterItem(t0);
     }
 
-    let iterItem = this.iter.next();
+    let iterItem = this._iter.next();
 
-    if (iterItem.done) {
-      this._done = true;
-      return null;
+    if (!iterItem.done) {
+      this._iterItem = iterItem.value;
+
+      return this._nextIterItem(t0);
     }
 
-    this._iterItem = iterItem.value;
-    this._doneTime = this._iterItem.time + (this._iterItem.duration || 0);
+    this._done = true;
 
-    return this._nextIterItem(t0);
+    return null;
   }
 
   _nextIterItem(t0) {

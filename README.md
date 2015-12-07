@@ -19,7 +19,7 @@ $ npm install interval-iterator
 
 ### Instance methods
 - `next(): { done: boolean, value: object[] }`
-- `[Symbol.iterator]()`
+- `[Symbol.iterator](): self`
 
 ## Examples
 
@@ -57,46 +57,6 @@ iter.next(); // { done: false, value: [] }
 iter.next(); // { done: false, value: [ { time: 8.0 } ] }
 // 9.000
 iter.next(); // { done: true, value: [] }
-```
-
-If the last item has `duration`, `{ done: true }` is emitted to be delayed.
-
-```js
-import IntervalIterator from "interval-iterator";
-
-let baseIterator = [
-  { time: 0.0, duration: 2 },
-  { time: 1.0, duration: 2 },
-  { time: 1.5, duration: 2 },
-  { time: 2.0, duration: 2 },
-  { time: 4.0, duration: 2 },
-  { time: 8.0, duration: 2 },
-][Symbol.iterator]();
-
-let iter = new IntervalIterator(baseIterator, 1);
-
-// 0.000
-iter.next(); // { done: false, value: [ { time: 0.0, duration: 2 } ] }
-// 1.000
-iter.next(); // { done: false, value: [ { time: 1.0, duration: 2 }, { time: 1.5, duration: 2 } ] }
-// 2.000
-iter.next(); // { done: false, value: [ { time: 2.0, duration: 2 } ] }
-// 3.000
-iter.next(); // { done: false, value: [] }
-// 4.000
-iter.next(); // { done: false, value: [ { time: 4.0, duration: 2 } ] }
-// 5.000
-iter.next(); // { done: false, value: [] }
-// 6.000
-iter.next(); // { done: false, value: [] }
-// 7.000
-iter.next(); // { done: false, value: [] }
-// 8.000
-iter.next(); // { done: false, value: [ { time: 8.0, duration: 2 } ] }
-// 9.000
-iter.next(); // { done: false, value: [] }
-// 10.000
-iter.next(); // { done: true , value: [] }
 ```
 
 ## License
